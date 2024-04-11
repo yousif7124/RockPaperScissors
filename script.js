@@ -13,7 +13,7 @@ function playRound() {
   if (computerSelection == "rock") {
     if (playerSelection == "rock") {
       return "Tie";
-    } else if (playerSelection == paper) {
+    } else if (playerSelection == "paper") {
       return "Player Wins";
     } else {
       return "Player Loses";
@@ -29,10 +29,39 @@ function playRound() {
   } else {
     if (playerSelection == "paper") {
       return "Player Loses";
-    } else if (playerSelection == "Rock") {
+    } else if (playerSelection == "rock") {
       return "Player Wins";
     } else {
       return "Tie";
     }
+  }
+}
+
+function playGame() {
+  let playerScore = 0;
+  let computerScore = 0;
+
+  function displayScore() {
+    console.log(
+      "Player score: " + playerScore + " || Computer Score: " + computerScore,
+    );
+  }
+
+  while (playerScore < 5 && computerScore < 5) {
+    let round = playRound();
+    if (round == "Player Wins") {
+      playerScore = playerScore + 1;
+      displayScore();
+    } else if (round == "Player Loses") {
+      computerScore = computerScore + 1;
+      displayScore();
+    } else {
+      displayScore();
+    }
+  }
+  if (computerScore == 5) {
+    console.log("Computer wins the match");
+  } else {
+    console.log("Player wins the match");
   }
 }
