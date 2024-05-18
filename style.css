@@ -5,11 +5,20 @@ body {
 #pick {
   font-weight: bolder;
   font-size: 8em;
+  color: #252525;
   text-align: center;
   margin-bottom: 0.5em;
 }
 
 #container {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  flex-direction: column;
+  gap: 12vh;
+}
+
+#choices {
   display: flex;
   justify-content: space-evenly;
   align-content: center;
@@ -23,4 +32,27 @@ body {
   border-radius: 6px;
   justify-content: center;
   align-content: center;
+}
+
+#lockIn {
+  border: none;
+  padding: 16px;
+  background-color: #303030;
+  color: white;
+  font-size: 16px;
+  margin: 0 35vw;
+}
+
+#score {
+  display: flex;
+  gap: 35vw;
+  justify-content: center;
+  align-items: center;
+}
+
+#playerScore,
+#computerScore {
+  font-weight: bold;
+  color: #252525;
+  font-size: 2em;
 }

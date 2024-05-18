@@ -1,7 +1,7 @@
 let choices = ["rock", "paper", "scissors"];
 
 function getComputerChoice() {
-  let choice = Math.floor(Math.random() * 3);
+  let choice = Math.round(Math.random() * 3);
   return choices[choice];
 }
 
@@ -14,11 +14,8 @@ for (let element = 0; element < ch.length; element++) {
   };
 }
 
-// function getPlayerChoice() {
-//
-//     return pChoice;
-//   });
-// }
+const lock = document.querySelector("#lockIn");
+lock.addEventListener("click", playRound);
 
 function playRound() {
   let computerSelection = getComputerChoice();
