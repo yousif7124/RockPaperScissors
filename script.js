@@ -1,6 +1,8 @@
 let choices = ["rock", "paper", "scissors"];
 let playerScore = 0;
 let computerScore = 0;
+let winner = document.createElement("div");
+winner.setAttribute("id", "winner");
 
 function getComputerChoice() {
   let choice = Math.floor(Math.random() * 3);
@@ -65,6 +67,23 @@ function displayScore() {
   cScore.textContent = "Computer Score: " + computerScore;
 }
 
+function replay() {
+  let body = document.querySelector("body");
+  let container = document.querySelector("#container");
+  let choose = document.querySelector("#pick");
+  body.removeChild(container);
+  body.removeChild(choose);
+  body.appendChild(winner);
+  let replay = document.createElement("button");
+  replay.textContent = "Play Again";
+  replay.setAttribute("id", "playAgain");
+  body.appendChild(replay);
+  let playAgain = document.querySelector("#playAgain");
+  playAgain.onclick = () => {
+    location.reload();
+  };
+}
+
 function calculateScore() {
   displayResult();
   if (result == "Player Wins") {
@@ -77,8 +96,10 @@ function calculateScore() {
     displayScore();
   }
   if (computerScore == 5) {
-    console.log("Computer wins the match!");
+    winner.textContent = "Computer wins the match!";
+    replay();
   } else if (playerScore == 5) {
-    console.log("Player wins the match!");
+    winner.textContent = "Player wins the match!";
+    replay();
   }
 }
