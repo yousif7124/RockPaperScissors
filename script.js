@@ -1,7 +1,9 @@
 let choices = ["rock", "paper", "scissors"];
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
-  let choice = Math.round(Math.random() * 3);
+  let choice = Math.floor(Math.random() * 3);
   return choices[choice];
 }
 
@@ -14,64 +16,69 @@ for (let element = 0; element < ch.length; element++) {
   };
 }
 
+let pScore = document.querySelector("#playerScore");
+let cScore = document.querySelector("#computerScore");
+
 const lock = document.querySelector("#lockIn");
-lock.addEventListener("click", playRound);
+lock.addEventListener("click", calculateScore);
+const resultText = document.querySelector("#result");
+let result;
 
 function playRound() {
   let computerSelection = getComputerChoice();
-  console.log("Computer Chooses " + computerSelection);
+  let cChoice = document.querySelector("#compChoice");
+  cChoice.innerText = "Computer Chooses " + computerSelection;
   if (computerSelection == "rock") {
     if (playerChoice == "rock") {
-      return "Tie";
+      result = "Tie";
     } else if (playerChoice == "paper") {
-      return "Player Wins";
+      result = "Player Wins";
     } else {
-      return "Player Loses";
+      result = "Player Loses";
     }
   } else if (computerSelection == "paper") {
     if (playerChoice == "paper") {
-      return "Tie";
+      result = "Tie";
     } else if ((playerChoice = "rock")) {
-      return "Player Loses";
+      result = "Player Loses";
     } else {
-      return "Player Wins";
+      result = "Player Wins";
     }
   } else {
     if (playerChoice == "paper") {
-      return "Player Loses";
+      result = "Player Loses";
     } else if (playerChoice == "rock") {
-      return "Player Wins";
+      result = "Player Wins";
     } else {
-      return "Tie";
+      result = "Tie";
     }
   }
 }
 
-// function playGame() {
-//   let playerScore = 0;
-//   let computerScore = 0;
-
-function displayScore() {
-  console.log(
-    "Player score: " + playerScore + " || Computer Score: " + computerScore,
-  );
+function displayResult() {
+  playRound();
+  resultText.textContent = `${result}`;
 }
 
-//   while (playerScore < 5 && computerScore < 5) {
-//     let round = playRound();
-//     if (round == "Player Wins") {
-//       playerScore = playerScore + 1;
-//       displayScore();
-//     } else if (round == "Player Loses") {
-//       computerScore = computerScore + 1;
-//       displayScore();
-//     } else {
-//       displayScore();
-//     }
-//   }
-//   if (computerScore == 5) {
-//     console.log("Computer wins the match");
-//   } else {
-//     console.log("Player wins the match");
-//   }
-// }
+function displayScore() {
+  pScore.textContent = "Your Score: " + playerScore;
+  cScore.textContent = "Computer Score: " + computerScore;
+}
+
+function calculateScore() {
+  displayResult();
+  if (result == "Player Wins") {
+    playerScore = playerScore + 1;
+    displayScore();
+  } else if (result == "Player Loses") {
+    computerScore = computerScore + 1;
+    displayScore();
+  } else {
+    displayScore();
+  }
+  if (computerScore == 5) {
+    console.log("Computer wins the match!");
+  } else if (playerScore == 5) {
+    console.log("Player wins the match!");
+  }
+}
